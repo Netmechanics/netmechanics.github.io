@@ -3,18 +3,20 @@ version: '3'
 tasks:
   git-version:
     cmds:
-      -|
-      git fetch --tags
-      latest_tag=$(git tag --sort=-v:refname | head -n 1 2>/dev/null || echo "0.0.0")
-      
-      major=$(echo $latest_tag | cut -d. -f1)
-      minor=$(echo $latest_tag | cut -d. -f2)
-      patch=$(echo $latest_tag | cut -d. -f3)
-      
-      new_patch=$((patch + 1))
-      new_tag="$major.$minor.$new_patch"
-      
-      #git tag $new_tag
-      #git push origin --tags
-      
-      echo "$new_tag"
+      - |
+        #!/bin/bash
+        
+        git fetch --tags
+        latest_tag=$(git tag --sort=-v:refname | head -n 1 2>/dev/null || echo "0.0.0")
+        
+        major=$(echo $latest_tag | cut -d. -f1)
+        minor=$(echo $latest_tag | cut -d. -f2)
+        patch=$(echo $latest_tag | cut -d. -f3)
+        
+        new_patch=$((patch + 1))
+        new_tag="$major.$minor.$new_patch"
+        
+        #git tag $new_tag
+        #git push origin --tags
+        
+        echo "$new_tag"
