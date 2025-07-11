@@ -2,6 +2,7 @@ version: '3'
 
 tasks:
   git-version:
+    silent: true
     cmds:
       - |
         #!/bin/bash
