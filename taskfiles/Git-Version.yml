@@ -17,7 +17,7 @@ tasks:
         new_patch=$((patch + 1))
         new_tag="$major.$minor.$new_patch"
         
-        #git tag $new_tag
-        #git push origin --tags
+        git tag $new_tag
+        git push origin --tags
         
         echo "$new_tag"
